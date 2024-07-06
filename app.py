@@ -16,21 +16,21 @@
 # data_iniciante = pd.DataFrame({
 #     'Rank': [1, 2, 3, 4, 5],
 #     'Nome': ['Natinha, Pepa, Navarro', 'Gabis, Lívia, Vitoria', 'Kleberson, Juma, Jessica', 'Maria, Fernanda, Vini', 'Giseley, Elis, Cair'],
-#     'Prova1': [85, 90, 80, 0, 0],
-#     'Prova2': [75, 82, 88, 0, 0],
-#     'Prova3': [90, 87, 92, 0, 0],
+#     'Prova1': [0, 0, 0, 0, 0],
+#     'Prova2': [0, 0, 0, 0, 0],
+#     'Prova3': [0, 0, 0, 0, 0],
 #     'Prova4': [0, 0, 0, 0, 0],  # Inicializa as provas vazias
 #     'Pontuação Total': [0, 0, 0, 0, 0]
 # })
 
 # data_scale = pd.DataFrame({
-#     'Rank': [1, 2, 3, 4, 5, 6, 7, 8],
+#     'Rank': [1, 2, 3, 4, 5, 6, 7],
 #     'Nome': ['Chandelle, Moto', 'Edilton, Luane', 'Thalita, Araújo, Telles', 'Simone, Renato', 'Jenifer S, Diego', 'Ana, Rafa', 'Rose, Paulo', ''],
-#     'Prova1': [0, 0, 0, 0, 0, 0, 0, 0],
-#     'Prova2': [0, 0, 0, 0, 0, 0, 0, 0],
-#     'Prova3': [0, 0, 0, 0, 0, 0, 0, 0],
-#     'Prova4': [0, 0, 0, 0, 0, 0, 0, 0],
-#     'Pontuação Total': [0, 0, 0, 0, 0, 0, 0, 0]
+#     'Prova1': [0, 0, 0, 0, 0, 0, 0],
+#     'Prova2': [0, 0, 0, 0, 0, 0, 0],
+#     'Prova3': [0, 0, 0, 0, 0, 0, 0],
+#     'Prova4': [0, 0, 0, 0, 0, 0, 0],
+#     'Pontuação Total': [0, 0, 0, 0, 0, 0, 0]
 # })
 
 # data_rx = pd.DataFrame({
@@ -164,13 +164,13 @@ data_iniciante = pd.DataFrame({
 })
 
 data_scale = pd.DataFrame({
-    'Rank': [1, 2, 3, 4, 5, 6, 7, 8],
+    'Rank': [1, 2, 3, 4, 5, 6, 7],
     'Nome': ['Chandelle, Moto', 'Edilton, Luane', 'Thalita, Araújo, Telles', 'Simone, Renato', 'Jenifer S, Diego', 'Ana, Rafa', 'Rose, Paulo', ''],
-    'Prova1': [0, 0, 0, 0, 0, 0, 0, 0],
-    'Prova2': [0, 0, 0, 0, 0, 0, 0, 0],
-    'Prova3': [0, 0, 0, 0, 0, 0, 0, 0],
-    'Prova4': [0, 0, 0, 0, 0, 0, 0, 0],
-    'Pontuação Total': [0, 0, 0, 0, 0, 0, 0, 0]
+    'Prova1': [0, 0, 0, 0, 0, 0, 0],
+    'Prova2': [0, 0, 0, 0, 0, 0, 0],
+    'Prova3': [0, 0, 0, 0, 0, 0, 0],
+    'Prova4': [0, 0, 0, 0, 0, 0, 0],
+    'Pontuação Total': [0, 0, 0, 0, 0, 0, 0]
 })
 
 data_rx = pd.DataFrame({
