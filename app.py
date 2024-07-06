@@ -180,8 +180,8 @@ data_scale = pd.DataFrame({
 
 data_rx = pd.DataFrame({
     'Nome': ['SEM NO RAP', 'CROSSFRITO', 'RX FAKE'],
-    'Prova1': [100, 50, 60],
-    'Prova2': [30, 90, 100],
+    'Prova1': [0, 0, 0],
+    'Prova2': [0, 0, 0],
     'Prova3': [0, 0, 0],
     'Prova4': [0, 0, 0],
     'Pontuação Total': [0, 0, 0]
@@ -210,10 +210,11 @@ def style_table(df):
 st.title('Leaderboard - GAMES 2024')
 
 # Adiciona a imagem na página de login (caminho relativo ao diretório do script)
+# Adiciona a imagem na página de login (caminho relativo ao diretório do script)
 try:
     script_dir = os.path.dirname(__file__)
     image_path = os.path.join(script_dir, 'IMG_2403.jpeg')
-    st.image(image_path, use_column_width=True)
+    st.image(image_path, width=400)  # Defina o width conforme necessário
 except FileNotFoundError:
     st.warning("Imagem não encontrada. Verifique o caminho do arquivo.")
 
