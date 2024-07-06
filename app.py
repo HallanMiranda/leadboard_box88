@@ -177,9 +177,9 @@ data_scale = pd.DataFrame({
 data_rx = pd.DataFrame({
     'Rank': [1, 2, 3],
     'Nome': ['SEM NO RAP', 'CROSSFRITO', 'RX FAKE'],
-    'Prova1': [0, 0, 0],
-    'Prova2': [0, 0, 0],
-    'Prova3': [0, 0, 0],
+    'Prova1': [100, 70, 0],
+    'Prova2': [90, 40, 0],
+    'Prova3': [70, 10, 0],
     'Prova4': [0, 0, 0],
     'Pontuação Total': [0, 0, 0]
 })
