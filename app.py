@@ -138,6 +138,7 @@
 
 
 
+
 import streamlit as st
 import pandas as pd
 
@@ -155,7 +156,7 @@ def authenticate(tipo):
 # Inicialização dos dados com os times das categorias
 data_iniciante = pd.DataFrame({
     'Rank': [1, 2, 3, 4, 5],
-    'Nome': ['Natinha, Pepa, Navarro', 'Gabis, Lívia, Vitoria', 'Kleberson, Juma, Jessica', 'Maria, Fernanda, Vini', 'Giseley, Elis, Cair'],
+    'Nome': ['LOS PEPITOS', 'A TROPA DOS NO REP', 'RX JUNIOR', 'INIMIGOS DO CARDIO', 'ROUGE '],
     'Prova1': [0, 0, 0, 0, 0],
     'Prova2': [0, 0, 0, 0, 0],
     'Prova3': [0, 0, 0, 0, 0],
@@ -164,18 +165,18 @@ data_iniciante = pd.DataFrame({
 })
 
 data_scale = pd.DataFrame({
-    'Rank': [1, 2, 3, 4, 5, 6, 7],
-    'Nome': ['Chandelle, Moto', 'Edilton, Luane', 'Thalita, Araújo, Telles', 'Simone, Renato', 'Jenifer S, Diego', 'Ana, Rafa', 'Rose, Paulo'],
-    'Prova1': [0, 0, 0, 0, 0, 0, 0],
-    'Prova2': [0, 0, 0, 0, 0, 0, 0],
-    'Prova3': [0, 0, 0, 0, 0, 0, 0],
-    'Prova4': [0, 0, 0, 0, 0, 0, 0],
-    'Pontuação Total': [0, 0, 0, 0, 0, 0, 0]
+    'Rank': [1, 2, 3, 4, 5, 6],
+    'Nome': [ 'GUERREIROS DO SAMU', 'NAO TEM GALANTIA', 'MOTOR MARCHA LENTA','CROSSFAKE', 'MC FERROU E MC DEU MAL', 'RX NA PROXIMA'],
+    'Prova1': [ 0, 0, 0, 0, 0, 0],
+    'Prova2': [ 0, 0, 0, 0, 0, 0],
+    'Prova3': [ 0, 0, 0, 0, 0, 0],
+    'Prova4': [ 0, 0, 0, 0, 0, 0],
+    'Pontuação Total': [ 0, 0, 0, 0, 0, 0]
 })
 
 data_rx = pd.DataFrame({
     'Rank': [1, 2, 3],
-    'Nome': ['Willian, Karen', 'Gustavo, Karina', 'Guto, Eliene75'],
+    'Nome': ['SEM NO RAP', 'CROSSFRITO', 'RX FAKE'],
     'Prova1': [0, 0, 0],
     'Prova2': [0, 0, 0],
     'Prova3': [0, 0, 0],
@@ -188,7 +189,17 @@ def calcular_pontuacao_total(df):
     df['Pontuação Total'] = df[['Prova1', 'Prova2', 'Prova3', 'Prova4']].sum(axis=1)
     return df
 
-#st.title('Leaderboard - Box 88 GAMES 2024')
+# Função para estilizar a tabela com destaque para maior e menor pontuação
+def style_table(df):
+    styled_df = df.style.format({"Pontuação Total": "{:.0f}"})\
+                         .highlight_max(subset="Pontuação Total", color='lightgreen')\
+                         .highlight_min(subset="Pontuação Total", color='lightcoral')\
+                         .set_table_styles([
+                             {'selector': 'thead th', 'props': [('background-color', '#f4f4f4'), ('font-weight', 'bold')]},
+                             {'selector': 'tbody tr:nth-child(even)', 'props': [('background-color', '#f9f9f9')]},
+                             {'selector': 'tbody tr:hover', 'props': [('background-color', '#f1f1f1')]}
+                         ])
+    return styled_df
 
 # Título da aplicação
 st.title('Leaderboard - Box 88 GAMES 2024')
@@ -207,13 +218,13 @@ if authenticate(tipo_acesso):
             
             if categoria_selecionada == 'Iniciante':
                 data_iniciante = calcular_pontuacao_total(data_iniciante)
-                st.dataframe(data_iniciante.set_index('Rank').style.set_properties(**{'text-align': 'left'}), height=400)
+                st.dataframe(style_table(data_iniciante.set_index('Rank').reset_index()), height=400)
             elif categoria_selecionada == 'Scale':
                 data_scale = calcular_pontuacao_total(data_scale)
-                st.dataframe(data_scale.set_index('Rank').style.set_properties(**{'text-align': 'left'}), height=400)
+                st.dataframe(style_table(data_scale.set_index('Rank').reset_index()), height=400)
             elif categoria_selecionada == 'RX':
                 data_rx = calcular_pontuacao_total(data_rx)
-                st.dataframe(data_rx.set_index('Rank').style.set_properties(**{'text-align': 'left'}), height=400)
+                st.dataframe(style_table(data_rx.set_index('Rank').reset_index()), height=400)
 
             st.write(f"Visualizando times para a categoria '{categoria_selecionada}'.")
             st.write("Apenas visualização. Competidores não podem editar os dados.")
@@ -261,13 +272,13 @@ if authenticate(tipo_acesso):
             st.subheader('Leaderboard - Visualização Competidor')
 
             st.write("Times da categoria Iniciante:")
-            st.dataframe(data_iniciante.set_index('Rank').style.set_properties(**{'text-align': 'left'}), height=200)
+            st.dataframe(style_table(data_iniciante.set_index('Rank').reset_index()), height=200)
 
             st.write("Times da categoria Scale:")
-            st.dataframe(data_scale.set_index('Rank').style.set_properties(**{'text-align': 'left'}), height=200)
+            st.dataframe(style_table(data_scale.set_index('Rank').reset_index()), height=200)
 
             st.write("Times da categoria RX:")
-            st.dataframe(data_rx.set_index('Rank').style.set_properties(**{'text-align': 'left'}), height=200)
+            st.dataframe(style_table(data_rx.set_index('Rank').reset_index()), height=200)
 
             st.write("Apenas visualização. Competidores não podem editar os dados.")
 
@@ -275,4 +286,7 @@ if authenticate(tipo_acesso):
         view_leaderboard_competidor()
 
 else:
-    st.warning('Por favor, insira a senha correta para acessar.')
+    st.warning('Por favor, insira a senha correta para acessar o app.')
+
+
+
