@@ -156,16 +156,16 @@ def authenticate(tipo):
 data_iniciante = pd.DataFrame({
     'Rank': [1, 2, 3, 4, 5],
     'Nome': ['Natinha, Pepa, Navarro', 'Gabis, Lívia, Vitoria', 'Kleberson, Juma, Jessica', 'Maria, Fernanda, Vini', 'Giseley, Elis, Cair'],
-    'Prova1': [85, 90, 80, 0, 0],
-    'Prova2': [75, 82, 88, 0, 0],
-    'Prova3': [90, 87, 92, 0, 0],
+    'Prova1': [0, 0, 0, 0, 0],
+    'Prova2': [0, 0, 0, 0, 0],
+    'Prova3': [0, 0, 0, 0, 0],
     'Prova4': [0, 0, 0, 0, 0],  # Inicializa as provas vazias
     'Pontuação Total': [0, 0, 0, 0, 0]
 })
 
 data_scale = pd.DataFrame({
     'Rank': [1, 2, 3, 4, 5, 6, 7],
-    'Nome': ['Chandelle, Moto', 'Edilton, Luane', 'Thalita, Araújo, Telles', 'Simone, Renato', 'Jenifer S, Diego', 'Ana, Rafa', 'Rose, Paulo', ''],
+    'Nome': ['Chandelle, Moto', 'Edilton, Luane', 'Thalita, Araújo, Telles', 'Simone, Renato', 'Jenifer S, Diego', 'Ana, Rafa', 'Rose, Paulo'],
     'Prova1': [0, 0, 0, 0, 0, 0, 0],
     'Prova2': [0, 0, 0, 0, 0, 0, 0],
     'Prova3': [0, 0, 0, 0, 0, 0, 0],
@@ -188,24 +188,10 @@ def calcular_pontuacao_total(df):
     df['Pontuação Total'] = df[['Prova1', 'Prova2', 'Prova3', 'Prova4']].sum(axis=1)
     return df
 
-# Título da aplicação com estilo laranja
-st.markdown("""
-<style>
-.title {
-    color: orange;
-}
-</style>
-""", unsafe_allow_html=True)
-
 #st.title('Leaderboard - Box 88 GAMES 2024')
 
 # Título da aplicação
 st.title('Leaderboard - Box 88 GAMES 2024')
-
-
-
-
-
 
 # Autenticação como administrador ou competidor
 tipo_acesso = st.radio('Você é:', ['administrador', 'competidor'])
