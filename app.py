@@ -139,8 +139,14 @@
 
 
 
+
+
+
+
+
 import streamlit as st
 import pandas as pd
+import os
 
 # Função para autenticação
 def authenticate(tipo):
@@ -155,7 +161,6 @@ def authenticate(tipo):
 
 # Inicialização dos dados com os times das categorias
 data_iniciante = pd.DataFrame({
-    'Rank': [1, 2, 3, 4, 5],
     'Nome': ['LOS PEPITOS', 'A TROPA DOS NO REP', 'RX JUNIOR', 'INIMIGOS DO CARDIO', 'ROUGE '],
     'Prova1': [0, 0, 0, 0, 0],
     'Prova2': [0, 0, 0, 0, 0],
@@ -165,28 +170,28 @@ data_iniciante = pd.DataFrame({
 })
 
 data_scale = pd.DataFrame({
-    'Rank': [1, 2, 3, 4, 5, 6],
-    'Nome': [ 'GUERREIROS DO SAMU', 'NAO TEM GALANTIA', 'MOTOR MARCHA LENTA','CROSSFAKE', 'MC FERROU E MC DEU MAL', 'RX NA PROXIMA'],
-    'Prova1': [ 0, 0, 0, 0, 0, 0],
-    'Prova2': [ 0, 0, 0, 0, 0, 0],
-    'Prova3': [ 0, 0, 0, 0, 0, 0],
-    'Prova4': [ 0, 0, 0, 0, 0, 0],
-    'Pontuação Total': [ 0, 0, 0, 0, 0, 0]
+    'Nome': ['GUERREIROS DO SAMU', 'NAO TEM GALANTIA', 'MOTOR MARCHA LENTA', 'CROSSFAKE', 'MC FERROU E MC DEU MAL', 'RX NA PROXIMA'],
+    'Prova1': [0, 0, 0, 0, 0, 0],
+    'Prova2': [0, 0, 0, 0, 0, 0],
+    'Prova3': [0, 0, 0, 0, 0, 0],
+    'Prova4': [0, 0, 0, 0, 0, 0],
+    'Pontuação Total': [0, 0, 0, 0, 0, 0]
 })
 
 data_rx = pd.DataFrame({
-    'Rank': [1, 2, 3],
     'Nome': ['SEM NO RAP', 'CROSSFRITO', 'RX FAKE'],
-    'Prova1': [100, 70, 0],
-    'Prova2': [90, 40, 0],
-    'Prova3': [70, 10, 0],
+    'Prova1': [100, 50, 60],
+    'Prova2': [30, 90, 100],
+    'Prova3': [0, 0, 0],
     'Prova4': [0, 0, 0],
     'Pontuação Total': [0, 0, 0]
 })
 
-# Função para calcular a pontuação total
+# Função para calcular a pontuação total e ordenar por rank
 def calcular_pontuacao_total(df):
     df['Pontuação Total'] = df[['Prova1', 'Prova2', 'Prova3', 'Prova4']].sum(axis=1)
+    df = df.sort_values('Pontuação Total', ascending=False).reset_index(drop=True)  # Ordenar em ordem decrescente
+    df['Rank'] = df.index + 1
     return df
 
 # Função para estilizar a tabela com destaque para maior e menor pontuação
@@ -202,7 +207,15 @@ def style_table(df):
     return styled_df
 
 # Título da aplicação
-st.title('Leaderboard - Box 88 GAMES 2024')
+st.title('Leaderboard - GAMES 2024')
+
+# Adiciona a imagem na página de login (caminho relativo ao diretório do script)
+try:
+    script_dir = os.path.dirname(__file__)
+    image_path = os.path.join(script_dir, 'IMG_2403.jpeg')
+    st.image(image_path, use_column_width=True)
+except FileNotFoundError:
+    st.warning("Imagem não encontrada. Verifique o caminho do arquivo.")
 
 # Autenticação como administrador ou competidor
 tipo_acesso = st.radio('Você é:', ['administrador', 'competidor'])
@@ -232,61 +245,49 @@ if authenticate(tipo_acesso):
         elif acao == 'Atualizar Pontuação':
             st.subheader('Atualizar Pontuação')
             categoria_selecionada = st.selectbox('Selecione a categoria:', ['Iniciante', 'Scale', 'RX'])
+            prova_selecionada = st.selectbox('Selecione a prova:', ['Prova1', 'Prova2', 'Prova3', 'Prova4'])
 
             if categoria_selecionada == 'Iniciante':
-                st.write("Selecione o competidor para atualizar:")
-                competidor = st.selectbox('Selecione o competidor:', data_iniciante['Nome'])
-                prova = st.selectbox('Selecione a prova:', ['Prova1', 'Prova2', 'Prova3', 'Prova4'])
-                nova_pontuacao = st.number_input(f'Nova pontuação para {prova}:', min_value=0)
-
-                if st.button('Atualizar'):
-                    data_iniciante.loc[data_iniciante['Nome'] == competidor, prova] = nova_pontuacao
+                for i, competidor in enumerate(data_iniciante['Nome']):
+                    nova_pontuacao = st.number_input(f'Nova pontuação para {competidor} - {prova_selecionada}:', min_value=0, key=f'iniciante_{competidor}')
+                    data_iniciante.at[i, prova_selecionada] = nova_pontuacao
+                if st.button('Atualizar Pontuações'):
                     data_iniciante = calcular_pontuacao_total(data_iniciante)
-                    st.success(f'Pontuação atualizada para {prova} para o competidor {competidor}!')
+                    st.success(f'Pontuações atualizadas para todos os competidores na prova {prova_selecionada}!')
 
             elif categoria_selecionada == 'Scale':
-                st.write("Selecione o competidor para atualizar:")
-                competidor = st.selectbox('Selecione o competidor:', data_scale['Nome'])
-                prova = st.selectbox('Selecione a prova:', ['Prova1', 'Prova2', 'Prova3', 'Prova4'])
-                nova_pontuacao = st.number_input(f'Nova pontuação para {prova}:', min_value=0)
-
-                if st.button('Atualizar'):
-                    data_scale.loc[data_scale['Nome'] == competidor, prova] = nova_pontuacao
+                for i, competidor in enumerate(data_scale['Nome']):
+                    nova_pontuacao = st.number_input(f'Nova pontuação para {competidor} - {prova_selecionada}:', min_value=0, key=f'scale_{competidor}')
+                    data_scale.at[i, prova_selecionada] = nova_pontuacao
+                if st.button('Atualizar Pontuações'):
                     data_scale = calcular_pontuacao_total(data_scale)
-                    st.success(f'Pontuação atualizada para {prova} para o competidor {competidor}!')
+                    st.success(f'Pontuações atualizadas para todos os competidores na prova {prova_selecionada}!')
 
             elif categoria_selecionada == 'RX':
-                st.write("Selecione o competidor para atualizar:")
-                competidor = st.selectbox('Selecione o competidor:', data_rx['Nome'])
-                prova = st.selectbox('Selecione a prova:', ['Prova1', 'Prova2', 'Prova3', 'Prova4'])
-                nova_pontuacao = st.number_input(f'Nova pontuação para {prova}:', min_value=0)
-
-                if st.button('Atualizar'):
-                    data_rx.loc[data_rx['Nome'] == competidor, prova] = nova_pontuacao
+                for i, competidor in enumerate(data_rx['Nome']):
+                    nova_pontuacao = st.number_input(f'Nova pontuação para {competidor} - {prova_selecionada}:', min_value=0, key=f'rx_{competidor}')
+                    data_rx.at[i, prova_selecionada] = nova_pontuacao
+                if st.button('Atualizar Pontuações'):
                     data_rx = calcular_pontuacao_total(data_rx)
-                    st.success(f'Pontuação atualizada para {prova} para o competidor {competidor}!')
+                    st.success(f'Pontuações atualizadas para todos os competidores na prova {prova_selecionada}!')
 
     elif tipo_acesso == 'competidor':
         # Função para visualizar leaderboard como competidor
-        def view_leaderboard_competidor():
+        def view_leaderboard_competidor(data_iniciante, data_scale, data_rx):
             st.subheader('Leaderboard - Visualização Competidor')
 
+            data_iniciante = calcular_pontuacao_total(data_iniciante)
+            data_scale = calcular_pontuacao_total(data_scale)
+            data_rx = calcular_pontuacao_total(data_rx)
+
             st.write("Times da categoria Iniciante:")
-            st.dataframe(style_table(data_iniciante.set_index('Rank').reset_index()), height=200)
+            st.dataframe(style_table(data_iniciante.set_index('Rank').reset_index()), height=300)
 
             st.write("Times da categoria Scale:")
-            st.dataframe(style_table(data_scale.set_index('Rank').reset_index()), height=200)
+            st.dataframe(style_table(data_scale.set_index('Rank').reset_index()), height=300)
 
             st.write("Times da categoria RX:")
-            st.dataframe(style_table(data_rx.set_index('Rank').reset_index()), height=200)
+            st.dataframe(style_table(data_rx.set_index('Rank').reset_index()), height=300)
 
-            st.write("Apenas visualização. Competidores não podem editar os dados.")
-
-        # Exibir leaderboard para competidor
-        view_leaderboard_competidor()
-
-else:
-    st.warning('Por favor, insira a senha correta para acessar o app.')
-
-
-
+        # Chamada da função para competidor
+        view_leaderboard_competidor(data_iniciante, data_scale, data_rx)
