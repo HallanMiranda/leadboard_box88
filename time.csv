@@ -1,0 +1,19 @@
+Nome,Categoria,Prova1,Prova2,Prova3,Prova4
+Time A,Iniciante,80,75,90,85
+Time B,Iniciante ,85,80,95,88
+Time C,Iniciante,78,82,88,87
+Time D,Iniciante,84,79,93,86
+Time E,Iniciante,83,77,89,85
+Time F,Iniciante,81,76,91,84
+Time A,Scale,85,90,88,92
+Time B,Scale,87,89,85,90
+Time C,Scale,86,88,87,89
+Time D,Scale,88,87,86,91
+Time E,Scale,89,85,84,90
+Time F,Scale,90,86,83,89
+Time A,RX,95,94,92,96
+Time B,RX,93,92,94,95
+Time C,RX,94,93,93,94
+Time D,RX,92,95,91,93
+Time E,RX,91,94,90,94
+Time F,RX,90,93,89,93
