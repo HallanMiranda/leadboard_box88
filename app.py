@@ -164,7 +164,7 @@ data_iniciante = pd.DataFrame({
     'Nome': ['LOS PEPITOS', 'A TROPA DOS NO REP', 'RX JUNIOR', 'INIMIGOS DO CARDIO', 'NAO TEM DORFLEX'],
     'Prova1': [95, 80, 100, 85, 90],
     'Prova2': [95, 85, 100, 90, 80],
-    'Prova3': [00, 0, 00, 00, 0],
+    'Prova3': [100, 0, 95, 90, 0],
     'Prova4': [0, 0, 0, 0, 0],  # Inicializa as provas vazias
     'Pontuação Total': [0, 0, 0, 0, 0]
 })
@@ -174,7 +174,7 @@ data_scale = pd.DataFrame({
     'Prova1': [75, 85, 100, 90, 80, 95],
     'Prova2': [90, 75, 80, 100, 85, 95],
     'Prova3': [85, 0, 90, 100, 0, 95],
-    'Prova4': [0, 0, 0, 0, 0, 0],
+    'Prova4': [0, 0, 100, 95, 0, 90],
     'Pontuação Total': [0, 0, 0, 0, 0, 0]
 })
 
@@ -182,7 +182,7 @@ data_rx = pd.DataFrame({
     'Nome': ['SEM NO RAP', 'CROSSFRITO', 'RX FAKE'],
     'Prova1': [100, 95, 90],
     'Prova2': [95, 90, 100],
-    'Prova3': [0, 0, 0],
+    'Prova3': [180, 180, 140],
     'Prova4': [0, 0, 0],
     'Pontuação Total': [0, 0, 0]
 })
