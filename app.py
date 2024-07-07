@@ -162,8 +162,8 @@ def authenticate(tipo):
 # Inicialização dos dados com os times das categorias
 data_iniciante = pd.DataFrame({
     'Nome': ['LOS PEPITOS', 'A TROPA DOS NO REP', 'RX JUNIOR', 'INIMIGOS DO CARDIO', 'NAO TEM DORFLEX'],
-    'Prova1': [95, 80, 100, 90, 85],
-    'Prova2': [95, 80, 100, 90, 85],
+    'Prova1': [95, 80, 100, 85, 90],
+    'Prova2': [95, 85, 100, 90, 80],
     'Prova3': [0, 0, 0, 0, 0],
     'Prova4': [0, 0, 0, 0, 0],  # Inicializa as provas vazias
     'Pontuação Total': [0, 0, 0, 0, 0]
