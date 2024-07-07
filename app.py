@@ -180,7 +180,7 @@ data_scale = pd.DataFrame({
 
 data_rx = pd.DataFrame({
     'Nome': ['SEM NO RAP', 'CROSSFRITO', 'RX FAKE'],
-    'Prova1': [0, 0, 0],
+    'Prova1': [100, 95, 90],
     'Prova2': [0, 0, 0],
     'Prova3': [0, 0, 0],
     'Prova4': [0, 0, 0],
