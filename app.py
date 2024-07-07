@@ -172,7 +172,7 @@ data_iniciante = pd.DataFrame({
 data_scale = pd.DataFrame({
     'Nome': ['GUERREIROS DO SAMU', 'NAO TEM GALANTIA', 'MOTOR MARCHA LENTA', 'CROSSFAKE', 'MC FERROU E MC DEU MAL', 'RX NA PROXIMA'],
     'Prova1': [75, 85, 100, 90, 80, 95],
-    'Prova2': [0, 0, 0, 0, 0, 0],
+    'Prova2': [90, 75, 80, 100, 85, 95],
     'Prova3': [0, 0, 0, 0, 0, 0],
     'Prova4': [0, 0, 0, 0, 0, 0],
     'Pontuação Total': [0, 0, 0, 0, 0, 0]
