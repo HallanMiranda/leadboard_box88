@@ -211,12 +211,12 @@ st.title('Leaderboard - GAMES 2024')
 
 # Adiciona a imagem na página de login (caminho relativo ao diretório do script)
 # Adiciona a imagem na página de login (caminho relativo ao diretório do script)
-try:
-    script_dir = os.path.dirname(__file__)
-    image_path = os.path.join(script_dir, 'IMG_2403.jpeg')
-    st.image(image_path, width=400)  # Defina o width conforme necessário
-except FileNotFoundError:
-    st.warning("Imagem não encontrada. Verifique o caminho do arquivo.")
+#try:
+#    script_dir = os.path.dirname(__file__)
+#    image_path = os.path.join(script_dir, 'IMG_2403.jpeg')
+#   st.image(image_path, width=400)  # Defina o width conforme necessário
+#except FileNotFoundError:
+#    st.warning("Imagem não encontrada. Verifique o caminho do arquivo.")
 
 # Autenticação como administrador ou competidor
 tipo_acesso = st.radio('Você é:', ['administrador', 'competidor'])
