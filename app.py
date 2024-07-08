@@ -179,12 +179,12 @@ data_scale = pd.DataFrame({
 })
 
 data_rx = pd.DataFrame({
-    'Nome': ['SEM NO RAP', 'CROSSFRITO', 'RX FAKE'],
-    'Prova1': [100, 95, 90],
-    'Prova2': [95, 90, 100],
-    'Prova3': [180, 180, 140],
-    'Prova4': [0, 0, 0],
-    'Pontuação Total': [0, 0, 0]
+    'Nome': ['SEM NO RAP', 'CROSSFRITO', 'RX FAKE', 'team 01', 'team 02', 'team 03'],
+    'Prova1': [100, 95, 90,00,00,00],
+    'Prova2': [95, 90, 100,00, 00, 00],
+    'Prova3': [180, 180, 140,00,00,00],
+    'Prova4': [0, 0, 0,00,00,00],
+    'Pontuação Total': [0, 0, 0,0,0,0]
 })
 
 # Função para calcular a pontuação total e ordenar por rank
